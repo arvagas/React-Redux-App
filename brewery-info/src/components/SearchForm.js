@@ -1,16 +1,34 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
+import { Form, Field, withFormik } from 'formik'
+import { connect } from 'react-redux'
 
-import {
-    UPDATE_SEARCH_LIST,
-}
-from '../actions'
+import { getSearchResults } from '../actions'
 
-const SearchForm = () => {
+const JSXForm = () => {
     return (
-        <>
-        </>
+        <Form style={{alignSelf:'center', margin:'2rem 0px'}}>
+            <label>
+                State:
+                <Field type='text' name='usState' placeholder='New York' />
+            </label>
+
+            <button type='submit'>Search</button>
+        </Form>
     )
 }
 
-export default SearchForm
+const SearchForm = withFormik({
+    mapPropsToValues({ usState }) {
+        return {
+            usState: usState || '',
+        }
+    },
+
+    handleSubmit(values, { props, resetForm, setSubmitting }) {
+        props.getSearchResults()
+        resetForm()
+        setSubmitting(false)
+    }
+})(JSXForm)
+
+export default connect(null, { getSearchResults })(SearchForm)

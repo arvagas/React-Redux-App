@@ -1,5 +1,7 @@
 import {
-    UPDATE_SEARCH_LIST,
+    FETCH_BREWERIES_START,
+    FETCH_BREWERIES_SUCCESS,
+    FETCH_BREWERIES_FAIL,
     ADD_TO_FAVORITES,
     REMOVE_FROM_FAVORITES
 }
@@ -25,12 +27,31 @@ const initialState = {
             tag_list: []
         }
     ],
+    error: '',
+    isFetching: false
 }
 
 export const reducer = (state = initialState, action) => {
     switch(action.type) {
-        case UPDATE_SEARCH_LIST :
-            return state
+        case FETCH_BREWERIES_START :
+            return {
+                ...state,
+                isFetching: true,
+                error: ''
+            }
+        case FETCH_BREWERIES_SUCCESS :
+            return {
+                ...state,
+                searchList: action.payload,
+                isFetching: false,
+                error: ''
+            }
+        case FETCH_BREWERIES_FAIL :
+            return {
+                ...state,
+                isFetching: false,
+                error: `${action.payload.status} ${action.payload.data.message}`
+            }
         case ADD_TO_FAVORITES :
             return state
         case REMOVE_FROM_FAVORITES :
