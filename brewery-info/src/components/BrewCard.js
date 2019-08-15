@@ -16,7 +16,8 @@ const BrewCard = ({ brewery }) => {
             <p>Location: {brewery.street}, {brewery.city}, {brewery.state}</p>
             <p>Contact: {brewery.phone}</p>
             <p>Website: <a href={brewery.website_url}>{brewery.website_url}</a></p>
-            <button>Favorites</button>
+            <button onClick={() => dispatch({type: ADD_TO_FAVORITES, payload: brewery})}>Add to Favorites</button>
+            <button onClick={() => dispatch({type: REMOVE_FROM_FAVORITES, payload: brewery})}>Remove from Favorites</button>
         </div>
     )
 }

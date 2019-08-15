@@ -53,9 +53,18 @@ export const reducer = (state = initialState, action) => {
                 error: `${action.payload.status} ${action.payload.data.message}`
             }
         case ADD_TO_FAVORITES :
-            return state
+            return {
+                ...state,
+                favorites: [
+                    ...state.favorites,
+                    action.payload
+                ]
+            }
         case REMOVE_FROM_FAVORITES :
-            return state
+            return {
+                ...state,
+                favorites: state.favorites.filter(item => action.payload.id === item.id)
+            }
         default :
             return state
     }
