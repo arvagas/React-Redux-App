@@ -7,10 +7,13 @@ import BrewCard from './components/BrewCard'
 function App() {
   const brewSearch = useSelector(state => state.searchList)
   const brewFave = useSelector(state => state.favorites)
+  const brewError = useSelector(state => state.error)
   
   return (
     <div>
       <SearchForm />
+      {brewError !== '' ? <h2>{brewError}</h2> : ''}
+
       {brewSearch.map(result => (
         <BrewCard key={result.id} brewery={result} />
       ))}

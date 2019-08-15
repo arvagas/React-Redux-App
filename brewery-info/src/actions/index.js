@@ -13,6 +13,6 @@ export const getSearchResults = (userInput) => {
         axios
             .get(`https://api.openbrewerydb.org/breweries?by_state=${inputChange}`)
             .then(res => dispatch({ type: FETCH_BREWERIES_SUCCESS, payload: res.data }))
-            .catch(err => dispatch({ type: FETCH_BREWERIES_FAIL, payload: err }))
+            .catch(err => dispatch({ type: FETCH_BREWERIES_FAIL, payload: err.response }))
     }
 }
