@@ -25,7 +25,7 @@ const SearchForm = withFormik({
     },
 
     handleSubmit(values, { props, resetForm, setSubmitting }) {
-        props.getSearchResults()
+        props.getSearchResults(values.usState)
         resetForm()
         setSubmitting(false)
     }
