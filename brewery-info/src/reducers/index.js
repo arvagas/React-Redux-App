@@ -63,7 +63,7 @@ export const reducer = (state = initialState, action) => {
         case REMOVE_FROM_FAVORITES :
             return {
                 ...state,
-                favorites: state.favorites.filter(item => action.payload.id === item.id)
+                favorites: state.favorites.filter(item => action.payload.id !== item.id)
             }
         default :
             return state
