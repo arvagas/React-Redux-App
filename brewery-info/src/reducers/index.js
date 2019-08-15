@@ -1,3 +1,10 @@
+import {
+    UPDATE_SEARCH_LIST,
+    ADD_TO_FAVORITES,
+    REMOVE_FROM_FAVORITES
+}
+from '../actions'
+
 const initialState = {
     favorites: [],
     searchList: [
@@ -22,6 +29,12 @@ const initialState = {
 
 export const reducer = (state = initialState, action) => {
     switch(action.type) {
+        case UPDATE_SEARCH_LIST :
+            return state
+        case ADD_TO_FAVORITES :
+            return state
+        case REMOVE_FROM_FAVORITES :
+            return state
         default :
             return state
     }
