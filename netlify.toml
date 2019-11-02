@@ -1,0 +1,4 @@
+[build]
+base = "brewery-info/"
+publish = "brewery-info/build/"
+command = "yarn build"
